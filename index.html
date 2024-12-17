@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dyah</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: #000;
+            color: #FFD700;
+            scroll-behavior: smooth;
+        }
+
+        /* Section styles */
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* CTA Button Section */
+        #intro {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #fff;
+        }
+
+        .cta-btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: #FFD700;
+            border: none;
+            color: #000;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #FFD700;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Ucapan Section */
+        .ucapan {
+            background: #000;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            font-size: 2rem;
+            padding: 0 5%;
+            line-height: 2.5rem;
+        }
+
+        .ucapan:nth-child(odd) {
+            background: #1E1E1E;
+        }
+
+        /* Floating Elements */
+        .floating {
+            position: absolute;
+            animation: floatAnimation 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .star, .balloon, .cake {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+
+        .star {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .balloon {
+            background-color: #FF6347;
+            border-radius: 50%;
+        }
+
+        .cake {
+            background: url('https://img.icons8.com/emoji/48/birthday-cake.png') no-repeat center;
+            background-size: contain;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section Pertama -->
+    <section id="intro" class="section">
+        <button class="cta-btn" id="playBtn">🎉 Tekan Untuk Kejutan 🎉</button>
+    </section>
+
+    <!-- Section Selamat Ulang Tahun -->
+    <section class="section ucapan">
+        <h1>🎉 Selamat Ulang Tahun, Dyah! 🎉</h1>
+    </section>
+
+    <!-- Beberapa Section Ucapan -->
+    <section class="section ucapan">
+        <p>🎂 Selamat ulang tahun! Semoga hidupmu selalu manis seperti kue ulang tahun ini. 🎂</p>
+    </section>
+
+    <section class="section ucapan">
+        <p>🌟 Semoga kebahagiaan selalu menyertaimu di setiap langkah hidupmu. 🌟</p>
+    </section>
+
+    <section class="section ucapan">
+        <p>💖 Doaku selalu untukmu: panjang umur, sehat selalu, dan penuh keberkahan. 💖</p>
+    </section>
+
+    <section class="section ucapan">
+        <p>🎁 Semoga tahun ini penuh kejutan indah dan rezeki yang melimpah. 🎁</p>
+    </section>
+
+    <section class="section ucapan">
+        <p>🥳 Usia baru, semangat baru! Selamat membuka lembaran baru, Dyah! 🥳</p>
+    </section>
+
+    <!-- Floating Elements -->
+    <div class="floating star" style="top: 10%; left: 15%;"></div>
+    <div class="floating star" style="top: 20%; left: 70%;"></div>
+    <div class="floating balloon" style="top: 30%; left: 50%;"></div>
+    <div class="floating cake" style="top: 40%; left: 30%;"></div>
+    <div class="floating star" style="top: 50%; left: 80%;"></div>
+    <div class="floating balloon" style="top: 60%; left: 20%;"></div>
+    <div class="floating cake" style="top: 70%; left: 70%;"></div>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="audio.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const playBtn = document.getElementById("playBtn");
+        const audio = document.getElementById("bgMusic");
+        let sections = document.querySelectorAll(".section");
+        let currentSection = 0;
+
+        // Mulai musik dan scroll otomatis
+        playBtn.addEventListener("click", () => {
+            // Putar musik
+            autoScroll();
+            audio.play();
+	 audio.addEventListener("ended", function() {
+        audio.currentTime = 0; // Kembalikan ke awal
+        audio.play();
+    });
+
+            // Hilangkan tombol play
+            document.getElementById("intro").style.display = "none";
+            document.body.style.overflow = "auto";
+
+            // Loop scroll otomatis
+        });
+
+        function autoScroll() {
+            setInterval(() => {
+                currentSection++;
+                if (currentSection >= sections.length) {
+                    currentSection = 1; // Kembali ke section kedua (melewati tombol)
+                }
+
+                sections[currentSection].scrollIntoView({
+                    behavior: "smooth"
+                });
+            }, 5000); // Scroll setiap 5 detik
+        }
+    </script>
+</body>
+</html>
+
